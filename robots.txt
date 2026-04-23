@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skajake1983.github.io/linwis-website/sitemap.xml
