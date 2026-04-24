@@ -39,15 +39,29 @@ if (form && statusNode) {
         body: new FormData(form)
       });
 
-      if (!response.ok) {
-        throw new Error("Unable to send message");
+      if (response.ok) {
+        form.reset();
+        statusNode.textContent = "Thanks. Your message was sent successfully.";
+        statusNode.style.color = "#0f7a4f";
+      } else {
+        let msg = "There was a problem sending your message. Please try again.";
+        try {
+          const data = await response.json();
+          if (data && data.errors) {
+            msg = data.errors.map((e) => e.message).join(" ");
+          }
+        } catch (_) { /* non-JSON response, keep default msg */ }
+        // 403 typically means the form hasn't been activated in Formspree yet,
+        // or this origin isn't in the allowed list.
+        if (response.status === 403) {
+          msg = "Form submission was blocked. Please ensure the Formspree form is activated and this site's URL is added to allowed origins in your Formspree dashboard.";
+        }
+        statusNode.textContent = msg;
+        statusNode.style.color = "#8d3d00";
       }
-
-      form.reset();
-      statusNode.textContent = "Thanks. Your message was sent successfully.";
-      statusNode.style.color = "#0f7a4f";
     } catch (error) {
-      statusNode.textContent = "There was a problem sending your message. Please try again or email directly.";
+      // Network error or CORS rejection (e.g. testing from file://)
+      statusNode.textContent = "Could not reach the form service. If testing locally, please use the deployed site URL instead.";
       statusNode.style.color = "#8d3d00";
     } finally {
       if (submitBtn) {
