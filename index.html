@@ -305,8 +305,8 @@
             </label>
 
             <input type="hidden" name="_subject" value="Linwis Ventures Website Inquiry">
-            <!-- Honeypot: hidden from real users, bots fill it in -->
-            <input id="_trap" name="_trap" type="text" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <!-- Formspree honeypot: '_gotcha' is recognized natively and bot submissions are silently dropped -->
+            <input name="_gotcha" type="text" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
             <p class="form-help">By submitting, you agree that your message may be processed by Formspree to deliver email notifications.</p>
             <button class="btn btn-primary" type="submit">Send Message</button>
             <p id="form-status" class="form-status" aria-live="polite"></p>

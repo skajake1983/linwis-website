@@ -18,10 +18,7 @@ if (form && statusNode) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Honeypot: silently discard bot submissions
-    if (form.querySelector("#_trap") && form.querySelector("#_trap").value) {
-      return;
-    }
+    // Honeypot handled by Formspree's '_gotcha' field; nothing to check here.
 
     const endpoint = form.getAttribute("action");
     const submitBtn = form.querySelector("button[type='submit']");
