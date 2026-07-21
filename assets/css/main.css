@@ -339,6 +339,12 @@ main section {
   max-height: 40px;
 }
 
+.project-logo-hoopscape {
+  height: auto;
+  max-height: 34px;
+  max-width: 100%;
+}
+
 .project-logo-pbd {
   max-height: 38px;
   transform: scale(1.42);
