@@ -459,6 +459,27 @@ main section {
   gap: 0.5rem;
 }
 
+.mailing-address {
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.address-actions {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.copy-address-btn {
+  justify-self: start;
+}
+
+.copy-status {
+  margin: 0;
+  min-height: 1.2rem;
+  font-size: 0.85rem;
+  color: #516172;
+}
+
 form {
   display: grid;
   gap: 0.8rem;

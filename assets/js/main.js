@@ -11,6 +11,25 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
+const copyAddressBtn = document.querySelector(".copy-address-btn");
+const copyAddressStatus = document.querySelector("#copy-address-status");
+const mailingAddress = document.querySelector(".mailing-address");
+
+if (copyAddressBtn && copyAddressStatus && mailingAddress) {
+  copyAddressBtn.addEventListener("click", async () => {
+    const addressText = mailingAddress.innerText.trim();
+
+    try {
+      await navigator.clipboard.writeText(addressText);
+      copyAddressStatus.textContent = "Address copied.";
+      copyAddressStatus.style.color = "#0f7a4f";
+    } catch (error) {
+      copyAddressStatus.textContent = "Copy failed. Please copy manually.";
+      copyAddressStatus.style.color = "#8d3d00";
+    }
+  });
+}
+
 const form = document.querySelector("#contact-form");
 const statusNode = document.querySelector("#form-status");
 
